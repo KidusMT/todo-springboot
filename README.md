@@ -2,6 +2,8 @@
 
 
 ## todo-testing
+
+### Service Test
 ```java
 public class TaskServiceTest {
 
@@ -43,4 +45,28 @@ public class TaskServiceTest {
         assertThat(todoItemCaptor).isEqualTo(todoItem);
     }
 }
+```
+
+### Controller Test
+
+```java
+
+@ExtendWith( SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class TestControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void getsAllEntries() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/test")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
+
+}
+
 ```
