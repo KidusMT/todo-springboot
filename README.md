@@ -69,6 +69,15 @@ public class TestControllerTest {
 
 }
 
+// for post
+String json = TestUtils.asJsonString(entity);
+
+mockMvc.perform(post("/test")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(json)
+    .characterEncoding("utf-8"))
+.andExpect(status().isOk())
+.andReturn();
 ```
 
 ### Utils class for object to json string converter
